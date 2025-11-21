@@ -1,36 +1,174 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VS Code Shortcuts
+
+A modern, responsive web application for browsing and searching Visual Studio Code keyboard shortcuts across Windows, Mac, and Linux operating systems.
+
+## Features
+
+- **Cross-Platform Support**: View shortcuts for Windows, macOS, and Linux
+- **Smart OS Detection**: Automatically detects your operating system on page load
+- **Command Palette**: Quick search functionality with keyboard shortcut (Ctrl/Cmd + K)
+- **Real-time Filtering**: Search shortcuts by description or key combination
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Modern UI**: Clean, minimalist interface with smooth transitions and hover effects
+- **Categorized Shortcuts**: Organized by category (General, Editing, Navigation, Debug, etc.)
+
+## Tech Stack
+
+### Frontend
+
+- **Next.js 16.0.3**: React framework with App Router
+- **React 19.2.0**: Latest React with improved performance
+- **TypeScript 5**: Type-safe development
+- **Tailwind CSS v4**: Utility-first CSS framework with latest features
+
+### Utilities
+
+- **lucide-react**: Modern icon library
+- **clsx** & **tailwind-merge**: Dynamic className management
+- **PostCSS**: CSS processing
+
+### Development Tools
+
+- **ESLint 9**: Code linting with Next.js config
+- **Next.js DevTools**: Development experience optimization
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20 or higher
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/LuizThiago/vscode-shortcuts.git
+cd vscode-shortcuts
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+vscode-shortcuts/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # Root layout with metadata
+│   ├── page.tsx           # Main page component
+│   └── globals.css        # Global styles and Tailwind directives
+├── components/            # React components
+│   ├── Header.tsx         # Header with OS selector and branding
+│   ├── CommandPalette.tsx # Search input component
+│   ├── ShortcutList.tsx   # Renders categorized shortcuts
+│   └── ShortcutItem.tsx   # Individual shortcut display
+├── data/                  # Data layer
+│   └── shortcuts.ts       # Shortcut definitions and types
+├── lib/                   # Utility functions
+│   └── utils.ts           # Helper functions (cn utility)
+└── public/                # Static assets
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Shortcuts Data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The shortcuts are defined in `data/shortcuts.ts` with the following structure:
 
-## Deploy on Vercel
+```typescript
+export type OS = "win" | "mac" | "linux";
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+export interface Shortcut {
+  id: string;
+  description: string;
+  keys: {
+    win: string[];
+    mac: string[];
+    linux: string[];
+  };
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To add or modify shortcuts, edit the `shortcutsData` array in `data/shortcuts.ts`.
+
+## Keyboard Shortcuts
+
+- **Ctrl/Cmd + K**: Focus search input
+- Search is case-insensitive and matches both descriptions and key combinations
+
+## Customization
+
+### Theme
+
+The application uses CSS custom properties for theming. Modify `app/globals.css` to adjust colors:
+
+```css
+@theme {
+  --color-background: /* ... */ ;
+  --color-foreground: /* ... */ ;
+  --color-primary: /* ... */ ;
+}
+```
+
+### Adding Categories
+
+Add new categories to the `shortcutsData` array in `data/shortcuts.ts`:
+
+```typescript
+{
+  title: "Your Category",
+  shortcuts: [
+    {
+      id: "unique_id",
+      description: "Shortcut description",
+      keys: {
+        win: ["Ctrl", "K"],
+        mac: ["Cmd", "K"],
+        linux: ["Ctrl", "K"],
+      },
+    },
+  ],
+}
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Author
+
+Created by [Luiz Thiago](https://luizthiago.com)
+
+## Acknowledgments
+
+- Shortcut data sourced from official VS Code documentation
+- Icons provided by [Lucide](https://lucide.dev)
+- Fonts: Geist Sans and Geist Mono
