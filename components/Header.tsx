@@ -9,27 +9,27 @@ interface HeaderProps {
 
 export function Header({ currentOS, onOSChange }: HeaderProps) {
   return (
-    <header className="flex items-center justify-between py-8 gap-6">
-      {/* Logo - Left */}
-      <div className="flex items-center gap-4">
-        <div>
-          <h1 className="text-3xl md:text-4xl font-bold bg-[#8c59e2] bg-clip-text text-transparent whitespace-nowrap">
+    <header className="flex flex-col lg:flex-row items-center justify-between py-4 lg:py-8 gap-4 lg:gap-6">
+      {/* Logo - Left on desktop, center on mobile */}
+      <div className="flex items-center gap-4 w-full lg:w-auto">
+        <div className="text-center lg:text-left w-full lg:w-auto">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-[#8c59e2] bg-clip-text text-transparent">
             VS Code Shortcuts
           </h1>
-          <p className="text-muted-foreground mt-1 text-sm hidden md:block">
+          <p className="text-muted-foreground mt-1 text-xs md:text-sm hidden md:block">
             Master your editor with these essential keybindings
           </p>
         </div>
       </div>
 
-      {/* OS Selector + Profile Icon - Right */}
-      <div className="flex items-center gap-4">
+      {/* OS Selector + Profile Icon - Stack on mobile, inline on desktop */}
+      <div className="flex flex-col sm:flex-row items-center gap-3 lg:gap-4 w-full lg:w-auto">
         {/* OS Selector */}
-        <div className="flex items-center bg-card/50 backdrop-blur-md border border-border rounded-full p-1.5 shadow-lg shadow-black/20">
+        <div className="flex items-center bg-card/50 backdrop-blur-md border border-border rounded-full p-1.5 shadow-lg shadow-black/20 w-full sm:w-auto">
           <button
             onClick={() => onOSChange("win")}
             className={cn(
-              "flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+              "flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-initial justify-center",
               currentOS === "win"
                 ? "bg-[#8c59e2] text-white shadow-md scale-105"
                 : "text-muted-foreground hover:text-foreground hover:bg-white/5"
@@ -41,7 +41,7 @@ export function Header({ currentOS, onOSChange }: HeaderProps) {
           <button
             onClick={() => onOSChange("mac")}
             className={cn(
-              "flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+              "flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-initial justify-center",
               currentOS === "mac"
                 ? "bg-[#8c59e2] text-white shadow-md scale-105"
                 : "text-muted-foreground hover:text-foreground hover:bg-white/5"
@@ -53,7 +53,7 @@ export function Header({ currentOS, onOSChange }: HeaderProps) {
           <button
             onClick={() => onOSChange("linux")}
             className={cn(
-              "flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+              "flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 flex-1 sm:flex-initial justify-center",
               currentOS === "linux"
                 ? "bg-[#8c59e2] text-white shadow-md scale-105"
                 : "text-muted-foreground hover:text-foreground hover:bg-white/5"
@@ -73,7 +73,7 @@ export function Header({ currentOS, onOSChange }: HeaderProps) {
           title="Luiz Thiago"
         >
           <ContactRound
-            className="w-10 h-10 text-muted-foreground group-hover:text-[#8c59e2] transition-colors duration-300"
+            className="w-8 h-8 sm:w-10 sm:h-10 text-muted-foreground group-hover:text-[#8c59e2] transition-colors duration-300"
             strokeWidth={1.5}
           />
 

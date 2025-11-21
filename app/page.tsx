@@ -63,19 +63,19 @@ export default function Home() {
 
   return (
     <div className="h-screen bg-background text-foreground selection:bg-primary/20 selection:text-primary flex flex-col overflow-hidden">
-      <div className="container mx-auto px-4 flex flex-col h-full">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 flex flex-col h-full max-w-full xl:max-w-[1280px]">
         <div className="flex-none">
           <Header currentOS={os} onOSChange={setOs} />
         </div>
 
-        <main className="flex-1 flex flex-col min-h-0 mb-8">
+        <main className="flex-1 flex flex-col min-h-0 mb-4 md:mb-8">
           <div className="flex-none">
             <CommandPalette value={searchQuery} onChange={setSearchQuery} />
           </div>
 
-          <div className="flex-1 overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
+          <div className="flex-1 overflow-y-auto overflow-x-hidden pr-2">
             {filteredCategories.length > 0 ? (
-              <div className="h-full flex flex-col flex-wrap content-start gap-6 pb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3 lg:gap-4 pb-4 auto-rows-min">
                 <ShortcutList categories={filteredCategories} os={os} />
               </div>
             ) : (
